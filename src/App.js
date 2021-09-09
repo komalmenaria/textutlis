@@ -28,16 +28,27 @@ function App() {
     }, 1000);
   }
 
+const removeBodyClasses= ()=>{
+document.body.classList.remove('bg-light');
+document.body.classList.remove('bg-success');
+document.body.classList.remove('bg-danger');
+document.body.classList.remove('bg-warning');
+document.body.classList.remove('bg-primary');
+document.body.classList.remove('bg-dark');
+
+
+}
 
 
 
-
-  const toggleMode = ()=>{
+  const toggleMode = (cls)=>{
+    removeBodyClasses();
+    document.body.classList.add('bg-'+ cls)
     if(mode === 'light'){
       setMode('dark');
       document.body.style.backgroundColor = '#232b41';
       showAlert("Dark mode has been enabled" ,"success"); 
-      document.title = 'TextUtiles - Dark Mode';
+      // document.title = 'TextUtiles - Dark Mode';
 
       // setInterval(() => {
       //   document.title = 'TextUtiles is Amazing Mode'
@@ -51,7 +62,7 @@ function App() {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode has been enabled" ,"success");
-      document.title = 'TextUtiles - Light Mode';
+      // document.title = 'TextUtiles - Light Mode';
 
 
     }
@@ -67,7 +78,7 @@ function App() {
 <div className="container my-3">
 <Switch>
           <Route exact path="/about">
-            <About />
+            <About mode={mode} />
           </Route>
           
           <Route exact path="/">
